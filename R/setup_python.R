@@ -1,5 +1,18 @@
-install_pydeps <- function(
-  .conda_envname="derp_env", .install_conda=NULL, .create_condaenv=NULL
+
+#' FUNCTION_TITLE
+#'
+#' FUNCTION_DESCRIPTION
+#'
+#' @param .conda_envname DESCRIPTION.
+#' @param .install_conda DESCRIPTION.
+#' @param .create_condaenv DESCRIPTION.
+#'
+#' @return RETURN_DESCRIPTION
+#' @examples
+#' # ADD_EXAMPLES_HERE
+#' @export
+setup_derp_condaenv <- function(
+  .conda_envname="derp_condaenv", .install_conda=NULL, .create_condaenv=NULL
 ){
   checkmate::assert(
     checkmate::check_character(
@@ -66,6 +79,20 @@ install_pydeps <- function(
   )
 }
 
-load_condaenv <- function(.conda_envname="derp_env"){
+
+#' FUNCTION_TITLE
+#'
+#' FUNCTION_DESCRIPTION
+#'
+#' @param .conda_envname DESCRIPTION.
+#'
+#' @return RETURN_DESCRIPTION
+#' @examples
+#' # ADD_EXAMPLES_HERE
+#' @export
+use_derp_condaenv <- function(.conda_envname="derp_condaenv"){
+  checkmate::assert_character(
+    .conda_envname, len=1, any.missing=FALSE, null.ok=FALSE
+  )
   reticulate::use_condaenv(condaenv=.conda_envname)
 }
