@@ -38,7 +38,7 @@ install_pydeps <- function(
   if(!.conda_envname %in% reticulate::conda_list()$name){
     if(is.null(.create_condaenv)){
       if(interactive()){
-        .install_miniconda <- identical(
+        .create_condaenv <- identical(
           menu(
             title=crayon::italic("The conda environment does not exist"),
             choices=c("run reticulate::conda_create(.conda_envname)", "abort")
@@ -64,4 +64,8 @@ install_pydeps <- function(
   reticulate::conda_install(
     envname=.conda_envname, pip=TRUE, packages="germansentiment"
   )
+}
+
+load_condaenv <- function(.conda_envname="derp_env"){
+  reticulate::use_condaenv(condaenv=.conda_envname)
 }

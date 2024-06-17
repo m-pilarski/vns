@@ -1,25 +1,38 @@
-library(dplyr)
-library(reticulate)
-
-`%<-%` <- zeallot::`%<-%`
-`%||%` <- rlang::`%||%`
-
-# amazon_review_tbl <- fst::read_fst(here::here("data/amazon_review_tbl.fst"))
-
-
+#' FUNCTION_TITLE
+#'
+#' FUNCTION_DESCRIPTION
+#'
+#' @return RETURN_DESCRIPTION
+#' @examples
+#' # ADD_EXAMPLES_HERE
+#' @export
 load_germansentiment_model <- function(){
   .lib_germansentiment <- reticulate::import("germansentiment")
   .germansentiment_model <- .lib_germansentiment$SentimentModel()
   return(.germansentiment_model)
 }
 
-
-# lib_builtin <- reticulate::import_builtins()
-
-calc_sentiment <- function(
+#' FUNCTION_TITLE
+#'
+#' FUNCTION_DESCRIPTION
+#'
+#' @param .doc_str DESCRIPTION.
+#' @param .germansentiment_model DESCRIPTION.
+#'
+#' @return RETURN_DESCRIPTION
+#' @examples
+#' # ADD_EXAMPLES_HERE
+#' @export
+calc_germansentiment <- function(
   .doc_str, .germansentiment_model=load_germansentiment_model()
 ){
   checkmate::assert_character(.doc_str, len=1, any.missing=FALSE)
+  .germansentiment_model |>
+    reticulate::import_builtins()$type() |>
+    stringi::stri_detect_fixed(
+      "germansentiment.sentimentmodel.SentimentModel"
+    ) |>
+    stopifnot()
   .doc_str |>
     as.list() |>
     .germansentiment_model$predict_sentiment(output_probabilities=TRUE) |>
