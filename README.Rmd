@@ -40,5 +40,5 @@ library(vns)
 ```{r}
 amazon_review_tbl <- load_amazon_review_tbl()
 
-head(amazon_review_tbl)
+amazon_review_tbl
 ```

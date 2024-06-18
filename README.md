@@ -32,8 +32,8 @@ library(vns)
 ``` r
 amazon_review_tbl <- load_amazon_review_tbl()
 
-head(amazon_review_tbl)
-#> # A tibble: 6 × 4
+amazon_review_tbl
+#> # A tibble: 210,000 × 4
 #>   doc_id     doc_title                        doc_text             doc_label_num
 #>   <chr>      <chr>                            <chr>                        <int>
 #> 1 de_0784695 Leider nicht zu empfehlen        Leider, leider nach…             0
@@ -41,5 +41,5 @@ head(amazon_review_tbl)
 #> 3 de_0711785 Flohmarkt ware                   Siegel sowie Verpac…             0
 #> 4 de_0964430 Katastrophe                      Habe dieses Produkt…             0
 #> 5 de_0474538 Reißverschluss klemmt            Die Träger sind sch…             0
-#> # ℹ 1 more row
+#> # ℹ 209,995 more rows
 ```
