@@ -11,8 +11,8 @@
 #' @examples
 #' # ADD_EXAMPLES_HERE
 #' @export
-setup_derp_condaenv <- function(
-  .conda_envname="derp_condaenv", .install_conda=NULL, .create_condaenv=NULL
+setup_vns_condaenv <- function(
+  .conda_envname="vns_condaenv", .install_conda=NULL, .create_condaenv=NULL
 ){
   checkmate::assert(
     checkmate::check_character(
@@ -90,7 +90,7 @@ setup_derp_condaenv <- function(
 #' @examples
 #' # ADD_EXAMPLES_HERE
 #' @export
-use_derp_condaenv <- function(.conda_envname="derp_condaenv"){
+use_vns_condaenv <- function(.conda_envname="vns_condaenv"){
   checkmate::assert_character(
     .conda_envname, len=1, any.missing=FALSE, null.ok=FALSE
   )

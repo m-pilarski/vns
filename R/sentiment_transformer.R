@@ -7,7 +7,7 @@
 #' # ADD_EXAMPLES_HERE
 #' @export
 load_germansentiment_model <- function(){
-  .lib_germansentiment <- reticulate::import("germansentiment")
+  .lib_germansentiment <- reticulate::import("germansentiment", delay_load=TRUE)
   .germansentiment_model <- .lib_germansentiment$SentimentModel()
   return(.germansentiment_model)
 }
@@ -28,7 +28,7 @@ calc_germansentiment <- function(
 ){
   checkmate::assert_character(.doc_str, len=1, any.missing=FALSE)
   .germansentiment_model |>
-    reticulate::import_builtins()$type() |>
+    reticulate::import_builtins(delay_load=TRUE)$type() |>
     stringi::stri_detect_fixed(
       "germansentiment.sentimentmodel.SentimentModel"
     ) |>

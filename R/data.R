@@ -1,19 +1,23 @@
-#' FUNCTION_TITLE
+#' sentidict_sws_tbl: Sentiment dictionary based on "SentiWS"
 #'
-#' FUNCTION_DESCRIPTION
+#' DATASET_DESCRIPTION
 #'
-#' @return RETURN_DESCRIPTION
-#' @format A data frame with 210000 rows and 4 variables:
+#' @format A data frame with 34808 rows and 3 variables:
 #' \describe{
-#'   \item{\code{doc_id}}{character. DESCRIPTION.}
-#'   \item{\code{doc_title}}{character. DESCRIPTION.}
-#'   \item{\code{doc_text}}{character. DESCRIPTION.}
-#'   \item{\code{doc_label_num}}{integer. DESCRIPTION.}
+#'   \item{\code{tok_str}}{character. DESCRIPTION.}
+#'   \item{\code{tok_pol_lab}}{factor. DESCRIPTION.}
+#'   \item{\code{tok_pol_num}}{double. DESCRIPTION.}
 #' }
-#' @examples
-#' # ADD_EXAMPLES_HERE
-load_amazon_review_tbl <- function(){
-  fst::read_fst(
-    path=fs::path_package(package="derp", "extdata/amazon_review_tbl.fst")
-  )
-}
+"sentidict_sws_tbl"
+
+#' sentidict_gpc_tbl: Sentiment dictionary based on "German Polarity Clues"
+#'
+#' DATASET_DESCRIPTION
+#'
+#' @format A data frame with 39229 rows and 3 variables:
+#' \describe{
+#'   \item{\code{tok_str}}{character. DESCRIPTION.}
+#'   \item{\code{tok_pol_lab}}{factor. DESCRIPTION.}
+#'   \item{\code{tok_pol_num}}{double. DESCRIPTION.}
+#' }
+"sentidict_gpc_tbl"
