@@ -9,18 +9,14 @@ knitr::opts_chunk$set(
   collapse=TRUE,
   comment="#>",
   fig.path="man/figures/README-",
-  out.width="100%",
-  rows.print=5,
-  max.print=5
+  out.width="100%"
 )
+options(tibble.print_min=5, tibble.print_max=5)
 ```
 
-# vns
+# vns: Verarbeitung Natürlicher Sprache
 
-vns: Verarbeitung Natürlicher Sprache
-
-Welcome to the vns R package! vns stands for "Verarbeitung Natürlicher Sprache," which translates to "Natural Language Processing" in English. This package is a collection of quantitative text analysis tools specifically designed with a focus on the German language.
-Installation
+Welcome to the vns R package! vns stands for the German term "Verarbeitung Natürlicher Sprache," which translates to "Natural Language Processing" in English. This package is a collection of quantitative text analysis tools specifically designed with a focus on the German language.
 
 ## Installation
 

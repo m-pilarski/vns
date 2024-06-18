@@ -14,9 +14,9 @@
 #' # ADD_EXAMPLES_HERE
 #' @export
 load_amazon_review_tbl <- function(){
-  fst::read_fst(
+  tibble::as_tibble(fst::read_fst(
     path=fs::path_package(package="vns", "extdata/amazon_review_tbl.fst")
-  )
+  ))
 }
 
 #' FUNCTION_TITLE
@@ -39,7 +39,7 @@ load_amazon_review_tbl <- function(){
 #' # ADD_EXAMPLES_HERE
 #' @export
 load_support_email_tbl <- function(){
-  fst::read_fst(
+  tibble::as_tibble(fst::read_fst(
     path=fs::path_package(package="vns", "extdata/support_email_tbl.fst")
-  )
+  ))
 }
