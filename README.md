@@ -16,7 +16,7 @@ You can install the development version of vns from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("m-pilarski/derp")
+remotes::install_github("m-pilarski/vns")
 ```
 
 ## Example
