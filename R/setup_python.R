@@ -1,3 +1,4 @@
+python_dependencies <- c("germansentiment", "spacy")
 
 #' FUNCTION_TITLE
 #'
@@ -75,7 +76,7 @@ setup_vns_condaenv <- function(
     }
   }
   reticulate::conda_install(
-    envname=.conda_envname, pip=TRUE, packages=c("germansentiment", "spacy")
+    envname=.conda_envname, pip=TRUE, packages=python_dependencies
   )
 }
 

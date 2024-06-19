@@ -20,7 +20,7 @@ options(tibble.print_min=5, tibble.print_max=5)
 
 # vns: Verarbeitung Natürlicher Sprache
 
-Welcome to the vns R package! vns stands for the German term "Verarbeitung Natürlicher Sprache," which translates to "Natural Language Processing" in English. This package provides a comprehensive suite of tools for quantitative text analysis, specifically tailored for the German language.
+Welcome to the {vns} R package! "vns" stands for the German term "Verarbeitung Natürlicher Sprache," which translates to "Natural Language Processing" in English. This package provides a comprehensive suite of tools for quantitative text analysis, specifically tailored for the German language.
 
 ## Installation
 
@@ -33,11 +33,15 @@ remotes::install_github("m-pilarski/vns")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r}
 library(vns)
+```
 
+### Setup Python Dependencies
+
+`vns` has several Python dependencies that can be installed via `setup_vns_condaenv`. If you prefer to use another Python version, you can install the dependencies manually (listed in `vns:::python_dependencies`).
+
+```{r}
 # setup_vns_condaenv()
 use_vns_condaenv()
 ```
@@ -49,6 +53,11 @@ amazon_review_tbl <- load_amazon_review_tbl()
 
 amazon_review_tbl
 ```
+
+### Document Parsing
+
+Sentence boundary detection, tokenization, and POS tagging via spaCy.
+
 ```{r}
 amazon_review_tbl |> 
   dplyr::slice_sample(n=1e3) |> 

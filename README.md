@@ -7,7 +7,7 @@
 
 # vns: Verarbeitung Natürlicher Sprache
 
-Welcome to the vns R package! vns stands for the German term
+Welcome to the {vns} R package! “vns” stands for the German term
 “Verarbeitung Natürlicher Sprache,” which translates to “Natural
 Language Processing” in English. This package provides a comprehensive
 suite of tools for quantitative text analysis, specifically tailored for
@@ -25,11 +25,18 @@ remotes::install_github("m-pilarski/vns")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(vns)
+```
 
+### Setup Python Dependencies
+
+`vns` has several Python dependencies that can be installed via
+`setup_vns_condaenv`. If you prefer to use another Python version, you
+can install the dependencies manually (listed in
+`vns:::python_dependencies`).
+
+``` r
 # setup_vns_condaenv()
 use_vns_condaenv()
 ```
@@ -51,20 +58,24 @@ amazon_review_tbl
 #> # ℹ 209,995 more rows
 ```
 
+### Document Parsing
+
+Sentence boundary detection, tokenization, and POS tagging via spaCy.
+
 ``` r
 amazon_review_tbl |> 
   dplyr::slice_sample(n=1e3) |> 
   dplyr::pull(doc_text) |> 
   parse_doc_spacy()
-#> # A tibble: 36,582 × 5
-#>   doc_id sen_id tok_str           tok_pos tok_tag
-#>    <int>  <int> <chr>             <chr>   <chr>  
-#> 1      0      1 Ich               PRON    PPER   
-#> 2      0      1 habe              AUX     VAFIN  
-#> 3      0      1 die               DET     ART    
-#> 4      0      1 Eiswürfelbehälter NOUN    NN     
-#> 5      0      1 abends            ADV     ADV    
-#> # ℹ 36,577 more rows
+#> # A tibble: 37,778 × 5
+#>   doc_id sen_id tok_str tok_pos tok_tag
+#>    <int>  <int> <chr>   <chr>   <chr>  
+#> 1      0      1 Es      PRON    PPER   
+#> 2      0      1 ist     AUX     VAFIN  
+#> 3      0      1 NICHT   PART    PTKNEG 
+#> 4      0      1 von     ADP     APPR   
+#> 5      0      1 Samsung PROPN   NE     
+#> # ℹ 37,773 more rows
 ```
 
 ``` r
