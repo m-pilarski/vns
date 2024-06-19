@@ -1,5 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/m-pilarski/derp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/m-pilarski/derp/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 
 # vns: Verarbeitung Natürlicher Sprache
 
@@ -25,6 +29,9 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(vns)
+
+# setup_vns_condaenv()
+use_vns_condaenv()
 ```
 
 ### Example Data Sets
@@ -49,15 +56,15 @@ amazon_review_tbl |>
   dplyr::slice_sample(n=1e3) |> 
   dplyr::pull(doc_text) |> 
   parse_doc_spacy()
-#> # A tibble: 37,191 × 5
-#>   doc_id sen_id tok_str   tok_pos tok_tag
-#>    <int>  <int> <chr>     <chr>   <chr>  
-#> 1      0      1 Ich       PRON    PPER   
-#> 2      0      1 kann      AUX     VMFIN  
-#> 3      0      1 meine     DET     PPOSAT 
-#> 4      0      1 Vorredner NOUN    NN     
-#> 5      0      1 nur       ADV     ADV    
-#> # ℹ 37,186 more rows
+#> # A tibble: 36,582 × 5
+#>   doc_id sen_id tok_str           tok_pos tok_tag
+#>    <int>  <int> <chr>             <chr>   <chr>  
+#> 1      0      1 Ich               PRON    PPER   
+#> 2      0      1 habe              AUX     VAFIN  
+#> 3      0      1 die               DET     ART    
+#> 4      0      1 Eiswürfelbehälter NOUN    NN     
+#> 5      0      1 abends            ADV     ADV    
+#> # ℹ 36,577 more rows
 ```
 
 ``` r

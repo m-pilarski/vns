@@ -5,3 +5,4 @@ data-raw/
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^README\.Rmd$
+^\.github$
