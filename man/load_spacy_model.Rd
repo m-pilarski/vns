@@ -4,7 +4,7 @@
 \alias{load_spacy_model}
 \title{FUNCTION_TITLE}
 \usage{
-load_spacy_model(.model_name)
+load_spacy_model(.model_name = "de_core_news_lg")
 }
 \arguments{
 \item{.model_name}{DESCRIPTION.}

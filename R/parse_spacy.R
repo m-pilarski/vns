@@ -1,4 +1,3 @@
-
 #' FUNCTION_TITLE
 #'
 #' FUNCTION_DESCRIPTION
@@ -9,22 +8,48 @@
 #' @examples
 #' # ADD_EXAMPLES_HERE
 #' @export
-load_spacy_model <- function(.model_name){
-  .pylib_spacy <- reticulate::import("spacy", delay_load=TRUE)
-  .spacy_model <- .pylib_spacy$load(
-    name="de_core_news_lg",
-    # disable=list(
-    #   "tok2vec",
-    #   "tagger",
-    #   "parser",
-    #   "ner",
-    #   "attribute_ruler",
-    #   "lemmatizer"
-    # )
+load_spacy_model <- function(.model_name="de_core_news_lg"){
+  .model_args <- list(
+    name=.model_name,
+    disable=list(
+      "tok2vec",
+      # "tagger",
+      # "parser",
+      "ner",
+      "attribute_ruler",
+      "lemmatizer"
+    )
   )
-  # system2(reticulate::py_exe(), args=c("-m", "spacy", "download", .model_name))
+  .pylib_spacy <- reticulate::import("spacy", delay_load=TRUE)
+  tryCatch(
+    expr={
+      .load_error <- FALSE
+      .spacy_model <- .pylib_spacy$load(!!!.model_args)
+    },
+    error=\(..e){
+      .load_error <<- stringi::stri_detect_fixed(
+        ..e$message, stringi::stri_c("Can't find model '", .model_name, "'")
+      )
+      if(!.load_error){rlang::abort(..e$message, call=..e$call)}
+    }
+  )
+  if(.load_error){
+    tryCatch(
+      expr={
+        system2(
+          reticulate::py_exe(), args=c("-m", "spacy", "download", .model_name),
+        )
+      },
+      error=\(..e){
+        rlang::abort(
+          "Can't find and unable to download model '", .model_name, "'"
+        )
+      }
+    )
+    .spacy_model <- .pylib_spacy$load(!!!.model_args)
+  }
+  return(.spacy_model)
 }
-
 
 #' FUNCTION_TITLE
 #'
