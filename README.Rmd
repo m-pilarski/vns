@@ -39,7 +39,7 @@ library(vns)
 
 ### Setup Python Dependencies
 
-`vns` has several Python dependencies that can be installed via `setup_vns_condaenv`. If you prefer to use another Python version, you can install the dependencies manually (listed in `vns:::python_dependencies`).
+{vns} has several Python dependencies that can be installed via `setup_vns_condaenv`. If you prefer to use another Python version, you can install the dependencies manually (listed in `vns:::python_dependencies`).
 
 ```{r}
 # setup_vns_condaenv()

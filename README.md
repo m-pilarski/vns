@@ -31,7 +31,7 @@ library(vns)
 
 ### Setup Python Dependencies
 
-`vns` has several Python dependencies that can be installed via
+{vns} has several Python dependencies that can be installed via
 `setup_vns_condaenv`. If you prefer to use another Python version, you
 can install the dependencies manually (listed in
 `vns:::python_dependencies`).
@@ -67,15 +67,15 @@ amazon_review_tbl |>
   dplyr::slice_sample(n=1e3) |> 
   dplyr::pull(doc_text) |> 
   parse_doc_spacy()
-#> # A tibble: 37,778 × 5
-#>   doc_id sen_id tok_str tok_pos tok_tag
-#>    <int>  <int> <chr>   <chr>   <chr>  
-#> 1      0      1 Es      PRON    PPER   
-#> 2      0      1 ist     AUX     VAFIN  
-#> 3      0      1 NICHT   PART    PTKNEG 
-#> 4      0      1 von     ADP     APPR   
-#> 5      0      1 Samsung PROPN   NE     
-#> # ℹ 37,773 more rows
+#> # A tibble: 38,006 × 5
+#>   doc_id sen_id tok_str         tok_pos tok_tag
+#>    <int>  <int> <chr>           <chr>   <chr>  
+#> 1      0      1 Als             ADP     APPR   
+#> 2      0      1 Fahrradbrille   NOUN    NN     
+#> 3      0      1 mit             ADP     APPR   
+#> 4      0      1 eingearbeiteter ADJ     ADJA   
+#> 5      0      1 Lesehilfe       NOUN    NN     
+#> # ℹ 38,001 more rows
 ```
 
 ``` r
