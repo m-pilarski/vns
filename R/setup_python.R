@@ -63,7 +63,7 @@ setup_vns_condaenv <- function(
       }
     }
     if(.create_condaenv){
-      reticulate::conda_create(envname=.conda_envname)
+      reticulate::conda_create(envname=.conda_envname, python_version=NULL)
     }else{
       rlang::abort(c(
         "Missing the specified conda environment.",
@@ -75,7 +75,7 @@ setup_vns_condaenv <- function(
     }
   }
   reticulate::conda_install(
-    envname=.conda_envname, pip=TRUE, packages="germansentiment"
+    envname=.conda_envname, pip=TRUE, packages=c("germansentiment", "spacy")
   )
 }
 

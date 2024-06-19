@@ -22,6 +22,8 @@ Imports:
     reticulate,
     rlang,
     stringi,
+    tibble,
+    tidyr,
     utils,
     vctrs,
     zeallot

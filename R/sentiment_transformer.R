@@ -23,7 +23,7 @@ load_germansentiment_model <- function(){
 #' @examples
 #' # ADD_EXAMPLES_HERE
 #' @export
-calc_germansentiment <- function(
+calc_doc_germansentiment_tbl <- function(
   .doc_str, .germansentiment_model=load_germansentiment_model()
 ){
   checkmate::assert_character(.doc_str, len=1, any.missing=FALSE)

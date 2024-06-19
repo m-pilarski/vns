@@ -16,7 +16,7 @@ options(tibble.print_min=5, tibble.print_max=5)
 
 # vns: Verarbeitung Natürlicher Sprache
 
-Welcome to the vns R package! vns stands for the German term "Verarbeitung Natürlicher Sprache," which translates to "Natural Language Processing" in English. This package is a collection of quantitative text analysis tools specifically designed with a focus on the German language.
+Welcome to the vns R package! vns stands for the German term "Verarbeitung Natürlicher Sprache," which translates to "Natural Language Processing" in English. This package provides a comprehensive suite of tools for quantitative text analysis, specifically tailored for the German language.
 
 ## Installation
 
@@ -42,3 +42,36 @@ amazon_review_tbl <- load_amazon_review_tbl()
 
 amazon_review_tbl
 ```
+```{r}
+amazon_review_tbl |> 
+  dplyr::slice_sample(n=1e3) |> 
+  dplyr::pull(doc_text) |> 
+  parse_doc_spacy()
+```
+
+```{r, eval=FALSE}
+# summary(amazon_review_tbl$doc_label_num)
+# 
+# amazon_review_tbl |> 
+#   dplyr::mutate(
+#     doc_label_class = factor(
+#       dplyr::case_when(
+#         doc_label_num < 2 ~ 1L, doc_label_num == 2 ~ 2L, doc_label_num > 2 ~ 3L,
+#         .default=NA_integer_
+#       ),
+#       levels=1L:3L, labels=c("neg", "neu", "pos")
+#     )
+#   ) |> 
+#   rsample::initial_split(strata=doc_label_class) |> 
+#   (\(.splits){
+#     cross_val_tbl <<- rsample::training(.splits)
+#     final_val_tbl <<- rsample::testing(.splits)
+#   })()
+# 
+# cross_val_splits <- rsample::vfold_cv(cross_val_tbl, strata=doc_label_class)
+# 
+# tune::
+# 
+# cross_val_splits$splits[[1]]$data
+```
+
