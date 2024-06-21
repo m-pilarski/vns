@@ -2,16 +2,16 @@
 #'
 #' FUNCTION_DESCRIPTION
 #'
-#' @return RETURN_DESCRIPTION
-#' @format A data frame with 210000 rows and 4 variables:
+#' @format A tibble with 210000 rows and 4 columns:
 #' \describe{
 #'   \item{\code{doc_id}}{character. DESCRIPTION.}
 #'   \item{\code{doc_title}}{character. DESCRIPTION.}
 #'   \item{\code{doc_text}}{character. DESCRIPTION.}
 #'   \item{\code{doc_label_num}}{integer. DESCRIPTION.}
 #' }
+#' @return RETURN_DESCRIPTION
 #' @examples
-#' # ADD_EXAMPLES_HERE
+#' amazon_review_tbl <- load_amazon_review_tbl()
 #' @export
 load_amazon_review_tbl <- function(){
   tibble::as_tibble(fst::read_fst(
@@ -24,7 +24,7 @@ load_amazon_review_tbl <- function(){
 #' FUNCTION_DESCRIPTION
 #'
 #' @return RETURN_DESCRIPTION
-#' @format A data frame with 1700 rows and 8 variables:
+#' @format A tibble with 1700 rows and 8 columns:
 #' \describe{
 #'   \item{\code{businessScenario}}{character. DESCRIPTION.}
 #'   \item{\code{id}}{character. DESCRIPTION.}
@@ -36,7 +36,7 @@ load_amazon_review_tbl <- function(){
 #'   \item{\code{chunk_cat}}{character. DESCRIPTION.}
 #' }
 #' @examples
-#' # ADD_EXAMPLES_HERE
+#' # support_email_tbl <- load_support_email_tbl()
 #' @export
 load_support_email_tbl <- function(){
   tibble::as_tibble(fst::read_fst(

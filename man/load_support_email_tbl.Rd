@@ -4,7 +4,7 @@
 \alias{load_support_email_tbl}
 \title{FUNCTION_TITLE}
 \format{
-A data frame with 1700 rows and 8 variables:
+A tibble with 1700 rows and 8 columns:
 \describe{
 \item{\code{businessScenario}}{character. DESCRIPTION.}
 \item{\code{id}}{character. DESCRIPTION.}
@@ -26,5 +26,5 @@ RETURN_DESCRIPTION
 FUNCTION_DESCRIPTION
 }
 \examples{
-# ADD_EXAMPLES_HERE
+# support_email_tbl <- load_support_email_tbl()
 }

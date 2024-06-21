@@ -4,7 +4,7 @@
 \alias{load_amazon_review_tbl}
 \title{FUNCTION_TITLE}
 \format{
-A data frame with 210000 rows and 4 variables:
+A tibble with 210000 rows and 4 columns:
 \describe{
 \item{\code{doc_id}}{character. DESCRIPTION.}
 \item{\code{doc_title}}{character. DESCRIPTION.}
@@ -22,5 +22,5 @@ RETURN_DESCRIPTION
 FUNCTION_DESCRIPTION
 }
 \examples{
-# ADD_EXAMPLES_HERE
+amazon_review_tbl <- load_amazon_review_tbl()
 }

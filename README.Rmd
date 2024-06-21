@@ -66,28 +66,51 @@ amazon_review_tbl |>
 ```
 
 ```{r, eval=FALSE}
-# summary(amazon_review_tbl$doc_label_num)
-# 
-# amazon_review_tbl |> 
-#   dplyr::mutate(
-#     doc_label_class = factor(
-#       dplyr::case_when(
-#         doc_label_num < 2 ~ 1L, doc_label_num == 2 ~ 2L, doc_label_num > 2 ~ 3L,
-#         .default=NA_integer_
-#       ),
-#       levels=1L:3L, labels=c("neg", "neu", "pos")
-#     )
-#   ) |> 
-#   rsample::initial_split(strata=doc_label_class) |> 
-#   (\(.splits){
-#     cross_val_tbl <<- rsample::training(.splits)
-#     final_val_tbl <<- rsample::testing(.splits)
-#   })()
-# 
-# cross_val_splits <- rsample::vfold_cv(cross_val_tbl, strata=doc_label_class)
-# 
-# tune::
-# 
-# cross_val_splits$splits[[1]]$data
+initial_split <- 
+  amazon_review_tbl |>
+  dplyr::mutate(
+    doc_label_num_fct = factor(doc_label_num),
+    doc_label_class = factor(
+      dplyr::case_when(
+        doc_label_num < 2 ~ 1L, 
+        doc_label_num == 2 ~ 2L, 
+        doc_label_num > 2 ~ 3L,
+        .default=NA_integer_
+      ),
+      levels=1L:3L, labels=c("neg", "neu", "pos")
+    ),
+  ) |>
+  rsample::initial_split(strata=doc_label_class)
+
+training_tbl <- rsample::training(initial_split)
+
+vfold_splits <- rsample::vfold_cv(training_tbl, strata=doc_label_class)
+
+.split <- vfold_splits$splits[[1]]
+
+.split_model_data_tbl <- 
+  .split$data |> 
+  with(stringi::stri_c(doc_title, ": ", doc_text)) |> 
+  calc_doc_tok_sentidict_tbl(sentidict_sws_tbl) |> 
+  dplyr::mutate(
+    tok_has_alpha = stringi::stri_detect_regex(tok_str_raw, "[[:alpha:]]")
+  ) |> 
+  dplyr::summarize(
+    doc_senti_num = mean(tok_pol_num[tok_has_alpha] %0% NA_real_), 
+    .by=doc_id
+  ) |> 
+  dplyr::rename(doc_id_num = doc_id) |> 
+  dplyr::bind_cols(.split$data)
+
+.split_pred_tbl |> 
+  ggplot2::ggplot(ggplot2::aes(y=factor(doc_label_num), x=doc_senti_num)) + 
+  ggplot2::stat_summary(
+    fun.data=ggplot2::mean_se, geom="errorbar", orientation="y"
+  )
+
+.split_pred_tbl |> 
+  ggplot2::ggplot(ggplot2::aes(y=factor(doc_label_num), y=doc_senti_num)) + 
+  ggplot2::geom_smooth(method="gam")
+
 ```
 

@@ -10,15 +10,15 @@
 #' @export
 load_spacy_model <- function(.model_name="de_core_news_lg"){
   .model_args <- list(
-    name=.model_name,
-    disable=list(
-      "tok2vec",
-      # "tagger",
-      # "parser",
-      "ner",
-      "attribute_ruler",
-      "lemmatizer"
-    )
+    name=.model_name#,
+    # disable=list(
+    #   "tok2vec",
+    #   # "tagger",
+    #   # "parser",
+    #   # "ner",
+    #   # "attribute_ruler",
+    #   "lemmatizer"
+    # )
   )
   .pylib_spacy <- reticulate::import("spacy", delay_load=TRUE)
   tryCatch(
@@ -79,7 +79,7 @@ parse_doc_spacy <- function(
     reticulate::iterate(\(.enum_doc){
       reticulate::iterate(.enum_doc[[2]], \(..tok){
         .pyfuns$dict(
-          doc_id = .enum_doc[[1]],
+          doc_id = .enum_doc[[1]] + 1,
           tok_str = ..tok$text,
           tok_pos = ..tok$pos_,
           tok_tag = ..tok$tag_,
