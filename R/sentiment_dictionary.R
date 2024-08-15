@@ -60,9 +60,8 @@ calc_doc_tok_sentidict_tbl <- function(
       relationship="many-to-one", multiple="any"
     ) |>
     dplyr::mutate(
-      tok_pol_lab = tidyr::replace_na(
-        tok_pol_lab,
-        factor("sen-miss", levels=c(levels(tok_pol_lab), "sen-miss"))
+      tok_pol_lab = forcats::fct_na_value_to_level(
+        f=tok_pol_lab, level="sen-miss"
       ),
       tok_pol_num = tidyr::replace_na(tok_pol_num, 0)
     )

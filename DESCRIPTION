@@ -15,6 +15,7 @@ Imports:
     checkmate,
     crayon,
     dplyr,
+    forcats,
     fs,
     fst,
     methods,
