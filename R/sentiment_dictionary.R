@@ -61,8 +61,8 @@ calc_doc_tok_sentidict_tbl <- function(
     ) |>
     dplyr::mutate(
       tok_pol_lab = tidyr::replace_na(
-        tok_pol_lab, factor("sen-neu", levels=levels(tok_pol_lab))
-      ),
-      tok_pol_num = tidyr::replace_na(tok_pol_num, 0)
+        tok_pol_lab, factor("sen-miss", levels=levels(tok_pol_lab))
+      ) # ,
+      # tok_pol_num = tidyr::replace_na(tok_pol_num, 0)
     )
 }
