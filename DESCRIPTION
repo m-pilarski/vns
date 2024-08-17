@@ -22,7 +22,6 @@ Imports:
     purrr,
     reticulate,
     rlang,
-    shinyjs,
     stringi,
     tibble,
     tidyr,
