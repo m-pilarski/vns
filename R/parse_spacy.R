@@ -74,6 +74,7 @@ parse_doc_spacy <- function(
 
   .doc_parse_tbl <-
     .doc_str |>
+    as.list() |>
     .spacy_model$pipe(n_process=.n_process, batch_size=.batch_size) |>
     .pyfuns$enumerate() |>
     reticulate::iterate(\(.enum_doc){

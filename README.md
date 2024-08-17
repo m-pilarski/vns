@@ -67,15 +67,15 @@ amazon_review_tbl |>
   dplyr::slice_sample(n=1e3) |> 
   dplyr::pull(doc_text) |> 
   parse_doc_spacy()
-#> # A tibble: 37,891 × 5
-#>   doc_id sen_id tok_str   tok_pos tok_tag
-#>    <int>  <int> <chr>     <chr>   <chr>  
-#> 1      0      1 Ballons   NOUN    NN     
-#> 2      0      1 sehr      ADV     ADV    
-#> 3      0      1 schnell   ADV     ADJD   
-#> 4      0      1 beim      ADP     APPRART
-#> 5      0      1 ausblasen NOUN    NN     
-#> # ℹ 37,886 more rows
+#> # A tibble: 39,216 × 5
+#>   doc_id sen_id tok_str tok_pos tok_tag
+#>    <dbl>  <int> <chr>   <chr>   <chr>  
+#> 1      1      1 Bei     ADP     APPR   
+#> 2      1      1 diesem  DET     PDAT   
+#> 3      1      1 Buch    NOUN    NN     
+#> 4      1      1 finde   VERB    VVFIN  
+#> 5      1      1 ich     PRON    PPER   
+#> # ℹ 39,211 more rows
 ```
 
 ``` r
