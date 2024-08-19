@@ -6,14 +6,14 @@
 \usage{
 setup_vns_condaenv(
   .conda_envname = "vns_condaenv",
-  .install_conda = NULL,
+  .install_miniconda = NULL,
   .create_condaenv = NULL
 )
 }
 \arguments{
 \item{.conda_envname}{DESCRIPTION.}
 
-\item{.install_conda}{DESCRIPTION.}
+\item{.install_miniconda}{DESCRIPTION.}
 
 \item{.create_condaenv}{DESCRIPTION.}
 }
