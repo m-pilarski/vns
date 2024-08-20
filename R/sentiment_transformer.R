@@ -7,7 +7,8 @@
 #' # ADD_EXAMPLES_HERE
 #' @export
 load_germansentiment_model <- function(){
-  reticulate::import("os")$environ["TOKENIZERS_PARALLELISM"] <- FALSE
+  .lib_os <- reticulate::import("os", delay_load=TRUE)
+  .lib_os$environ["TOKENIZERS_PARALLELISM"] <- "false"
   .lib_germansentiment <- reticulate::import("germansentiment", delay_load=TRUE)
   .germansentiment_model <- .lib_germansentiment$SentimentModel()
   return(.germansentiment_model)
