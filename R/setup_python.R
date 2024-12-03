@@ -62,7 +62,7 @@ setup_vns_condaenv <- function(
       }
     }
     if(.create_condaenv){
-      reticulate::conda_create(envname=.conda_envname, python_version=NULL)
+      reticulate::conda_create(envname=.conda_envname, python_version="3.10")
     }else{
       rlang::abort(c(
         "Missing the specified conda environment.",
