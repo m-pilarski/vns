@@ -8,24 +8,25 @@
 #' @examples
 #' # extract_text_html("<html><body>Hello</body></html>")
 #' @export
-extract_text_html <- function(.html){
-  checkmate::assert_character(.html, min.len=1, any.missing=FALSE, null.ok=FALSE)
-
-  .readability_dir <- fs::path_package("readability", package="vns")
-  
-  .read_js <- function(.filename){
-    .path <- fs::path(.readability_dir, .filename)
-    stringi::stri_c(readr::read_lines(.path), collapse="\n")
-  }
+extract_text_html <- function(.html) {
+  checkmate::assert_character(
+    .html,
+    min.len = 1,
+    any.missing = FALSE,
+    null.ok = FALSE
+  )
 
   .ctx <- V8::v8()
-  # Provide a minimal URL implementation if the engine lacks it; sufficient for
-  # Readability's href resolution.
-  # .ctx$eval(
-  #   "if (typeof URL === 'undefined') { class URL { constructor(href, base){ this.href = base ? base + href : href; } } }"
-  # )
-  .ctx$eval(.read_js("JSDOMParser.js"))
-  .ctx$eval(.read_js("Readability.js"))
+  .ctx$eval(
+    readr::read_file(
+      fs::path_package("readability", "JSDOMParser.js", package = "vns")
+    )
+  )
+  .ctx$eval(
+    readr::read_file(
+      fs::path_package("readability", "Readability.js", package = "vns")
+    )
+  )
   .ctx$eval(
     stringi::stri_c(
       "function parseWithReadability(html){",
@@ -38,16 +39,21 @@ extract_text_html <- function(.html){
     )
   )
 
-  .text <- purrr::map_chr(.html, function(.h){
+  .text <- purrr::map_chr(.html, function(..html) {
     tryCatch(
-      .ctx$call("parseWithReadability", .h),
-      error=\(..e){
+      expr = {
+        sink(file = nullfile())
+        ..text <- .ctx$call("parseWithReadability", ..html)
+        sink(file = NULL)
+      },
+      error = \(..e) {
         rlang::abort(c(
           "Readability failed on input.",
-          i=..e$message
+          i = ..e$message
         ))
       }
     )
+    return(..text)
   })
 
   return(.text)
