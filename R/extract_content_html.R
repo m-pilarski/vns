@@ -1,4 +1,4 @@
-#' Extract text from HTML strings with Readability
+#' Extract Readability content from HTML strings
 #'
 #' Reads one or more HTML strings and extracts the Readability-processed HTML
 #' (article content) using the bundled Mozilla Readability library running
@@ -8,15 +8,10 @@
 #' @return Character vector with extracted HTML content, one entry per input
 #'   string.
 #' @examples
-#' # extract_text_html("<html><body>Hello</body></html>")
+#' # extract_content_html("<html><body>Hello</body></html>")
 #' @export
-extract_text_html <- function(.html) {
-  checkmate::assert_character(
-    .html,
-    min.len = 1,
-    any.missing = FALSE,
-    null.ok = FALSE
-  )
+extract_content_html <- function(.html) {
+  checkmate::assert_character(.html, min.len = 1, any.missing = FALSE, null.ok = FALSE)
 
   .ctx <- V8::v8()
   .ctx$eval(
@@ -45,11 +40,7 @@ extract_text_html <- function(.html) {
     tryCatch(
       expr = {
         sink(file = nullfile())
-        ..content <- .ctx$call("parseWithReadability", ..html) |>
-          htmltools::HTML() |>
-          htmltools::tags$body() |>
-          htmltools::tags$html() |>
-          as.character()
+        ..content <- .ctx$call("parseWithReadability", ..html)
         sink(file = NULL)
       },
       error = \(..e) {
