@@ -30,6 +30,7 @@ Imports:
     utils,
     vctrs,
     zeallot,
-    htmltools
+    htmltools,
+    xml2
 Depends: 
     R (>= 2.10)
