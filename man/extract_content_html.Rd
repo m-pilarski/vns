@@ -10,14 +10,13 @@ extract_content_html(.html)
 \item{.html}{Character vector of HTML strings.}
 }
 \value{
-Character vector with extracted HTML content, one entry per input
+Character vector with extracted article HTML, one entry per input
 string.
 }
 \description{
-Reads one or more HTML strings and extracts the Readability-processed HTML
-(article content) using the bundled Mozilla Readability library running
-inside the V8 JavaScript engine.
+Passes each HTML string directly to Mozilla Readability and returns the
+extracted article HTML.
 }
 \examples{
-# extract_content_html("<html><body>Hello</body></html>")
+# extract_content_html("<html><body><article>Hello</article></body></html>")
 }

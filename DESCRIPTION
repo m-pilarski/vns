@@ -29,8 +29,6 @@ Imports:
     tidyr,
     utils,
     vctrs,
-    zeallot,
-    htmltools,
-    xml2
+    zeallot
 Depends: 
     R (>= 2.10)

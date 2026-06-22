@@ -1,66 +1,14 @@
 #' Extract text from HTML strings with Readability
 #'
-#' Reads one or more HTML strings and extracts the Readability-processed HTML
-#' (article content) using the bundled Mozilla Readability library running
-#' inside the V8 JavaScript engine.
+#' Passes each HTML string directly to Mozilla Readability and returns the
+#' extracted article text.
 #'
 #' @param .html Character vector of HTML strings.
-#' @return Character vector with extracted HTML content, one entry per input
+#' @return Character vector with extracted article text, one entry per input
 #'   string.
 #' @examples
-#' # extract_text_html("<html><body>Hello</body></html>")
+#' # extract_text_html("<html><body><article>Hello</article></body></html>")
 #' @export
 extract_text_html <- function(.html) {
-  checkmate::assert_character(
-    .html,
-    min.len = 1,
-    any.missing = FALSE,
-    null.ok = FALSE
-  )
-
-  .ctx <- V8::v8()
-  .ctx$eval(
-    readr::read_file(
-      fs::path_package("readability", "JSDOMParser.js", package = "vns")
-    )
-  )
-  .ctx$eval(
-    readr::read_file(
-      fs::path_package("readability", "Readability.js", package = "vns")
-    )
-  )
-  .ctx$eval(
-    stringi::stri_c(
-      "function parseWithReadability(html){",
-      "  const parser = new JSDOMParser();",
-      "  const doc = parser.parse(html, 'about:blank');",
-      "  const article = new Readability(doc).parse();",
-      "  return (article && article.content) ? article.content : '';",
-      "}",
-      sep="\n"
-    )
-  )
-
-  .content <- purrr::map_chr(.html, function(..html) {
-    tryCatch(
-      expr = {
-        sink(file = nullfile())
-        ..content <- .ctx$call("parseWithReadability", ..html) |>
-          htmltools::HTML() |>
-          htmltools::tags$body() |>
-          htmltools::tags$html() |>
-          as.character()
-        sink(file = NULL)
-      },
-      error = \(..e) {
-        rlang::abort(c(
-          "Readability failed on input.",
-          i = ..e$message
-        ))
-      }
-    )
-    return(..content)
-  })
-
-  return(.content)
+  .extract_readability(.html, "textContent")
 }
