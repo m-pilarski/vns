@@ -1,7 +1,7 @@
 #' Extract text from HTML strings with Readability
 #'
-#' Passes each HTML string directly to Mozilla Readability and returns the
-#' extracted article text.
+#' Normalizes HTML syntax without filtering content, passes the complete
+#' document to Mozilla Readability, and returns the extracted article text.
 #'
 #' @param .html Character vector of HTML strings.
 #' @return Character vector with extracted article text, one entry per input

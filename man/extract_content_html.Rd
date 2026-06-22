@@ -14,8 +14,8 @@ Character vector with extracted article HTML, one entry per input
 string.
 }
 \description{
-Passes each HTML string directly to Mozilla Readability and returns the
-extracted article HTML.
+Normalizes HTML syntax without filtering content, passes the complete
+document to Mozilla Readability, and returns the extracted article HTML.
 }
 \examples{
 # extract_content_html("<html><body><article>Hello</article></body></html>")
