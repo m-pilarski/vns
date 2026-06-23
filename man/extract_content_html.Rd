@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract_content_html.R
 \name{extract_content_html}
 \alias{extract_content_html}
-\title{Extract Readability content from HTML strings}
+\title{Extract relevant content from HTML strings}
 \usage{
 extract_content_html(.html)
 }
@@ -10,13 +10,13 @@ extract_content_html(.html)
 \item{.html}{Character vector of HTML strings.}
 }
 \value{
-Character vector with extracted article HTML, one entry per input
+Character vector with extracted HTML content, one entry per input
 string.
 }
 \description{
-Normalizes HTML syntax without filtering content, passes the complete
-document to Mozilla Readability, and returns the extracted article HTML.
+Uses Trafilatura in recall-oriented mode to extract the main content from
+complete HTML documents while retaining tables and document structure.
 }
 \examples{
-# extract_content_html("<html><body><article>Hello</article></body></html>")
+# extract_content_html("<html><body><main>Hello</main></body></html>")
 }

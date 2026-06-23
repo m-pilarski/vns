@@ -1,4 +1,9 @@
-python_dependencies <- c("germansentiment", "spacy", "bertopic")
+python_dependencies <- c(
+  "germansentiment",
+  "spacy",
+  "bertopic",
+  "trafilatura>=2.1.0"
+)
 
 #' FUNCTION_TITLE
 #'
