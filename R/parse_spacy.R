@@ -82,6 +82,7 @@ parse_doc_spacy <- function(
         .pyfuns$dict(
           doc_id = .enum_doc[[1]] + 1,
           tok_str = ..tok$text,
+          tok_lemma_str = ..tok$lemma_,
           tok_pos = ..tok$pos_,
           tok_tag = ..tok$tag_,
           tok_sen_start = ..tok$is_sent_start
