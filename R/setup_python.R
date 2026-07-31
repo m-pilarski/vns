@@ -1,5 +1,9 @@
 python_dependencies <- c(
-  "germansentiment",
+  # germansentiment wurde durch inst/python/vns_sentiment.py ersetzt, das
+  # transformers direkt anspricht — die Bibliothek ist mit transformers 5
+  # nicht mehr lauffaehig.
+  "transformers",
+  "torch",
   "spacy",
   "bertopic",
   "trafilatura>=2.1.0"

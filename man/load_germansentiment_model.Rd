@@ -4,7 +4,18 @@
 \alias{load_germansentiment_model}
 \title{FUNCTION_TITLE}
 \usage{
-load_germansentiment_model()
+load_germansentiment_model(
+  .model_name = "oliverguhr/german-sentiment-bert",
+  .clean_text = NULL
+)
+}
+\arguments{
+\item{.model_name}{Name des vortrainierten Modells auf dem Hugging Face Hub.}
+
+\item{.clean_text}{Textbereinigung vor der Klassifikation erzwingen oder
+abschalten. \code{NULL} waehlt sie automatisch: nur fuer
+\code{"oliverguhr/german-sentiment-bert"}, dessen Trainingsdaten so
+vorverarbeitet wurden. Andere Modelle erwarten den Rohtext.}
 }
 \value{
 RETURN_DESCRIPTION

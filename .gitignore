@@ -7,3 +7,4 @@ data-raw/input/
 .httr-oauth
 .DS_Store
 .quarto
+inst/python/__pycache__/
